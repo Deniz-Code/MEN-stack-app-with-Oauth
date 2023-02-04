@@ -1,15 +1,40 @@
-<%- include('./partials/html-head') %>
-<%- include('./partials/nav') %>
+<%- include('./partials/html-head') %> <%- include('./partials/nav') %>
 
 <main>
   <h1>hello, <%= user ? user.profile.name : "friend" %></h1>
   <% if (user?.profile.avatar) { %>
-    <div>
-      <img
-        src="<%= user.profile.avatar %>"
-        alt="<%= user.profile.name %> avatar"
-      />
-    </div>
+  <div>
+    <img
+      src="<%= user.profile.avatar %>"
+      alt="<%= user.profile.name %> avatar"
+    />
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <% if (user?.role>=900) { %>
+
+        <th>Bird Bux</th>
+        <% } %>
+      </tr>
+    </thead>
+    <tbody>
+      <% profiles.forEach(profile => { %>
+      <tr>
+        <td><%= profile.name %></td>
+        <% if (user?.role>=900) { %>
+        <td><%= profile.bux %></td>
+        <% } %>
+      </tr>
+
+      <% }) %>
+    </tbody>
+  </table>
+  <!-- optional chaining parameter , if this no exist just ignore what is associeted with it -->
+  <% } %> <% if (user?.role >=900) { %>
+
+  <h1>ADMIN!</h1>
   <% } %>
 </main>
 
